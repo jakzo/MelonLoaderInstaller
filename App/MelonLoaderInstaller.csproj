@@ -42,11 +42,15 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>F:\Projects\GitHub\MelonLoaderInstaller\AndroidInstaller\keystore.jks</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>keystore.jks</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3ToAF#E^HAY!&amp;3!MtiT@r4</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>lemonman</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>3ToAF#E^HAY!&amp;3!MtiT@r4</AndroidSigningKeyPass>
     <Nullable>enable</Nullable>
+
+    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <AndroidTargetSdkVersion>32</AndroidTargetSdkVersion>
+    <AndroidCompileSdkVersion>32</AndroidCompileSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -66,7 +70,7 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>F:\Projects\GitHub\MelonLoaderInstaller\AndroidInstaller\keystore.jks</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>keystore.jks</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3ToAF#E^HAY!&amp;3!MtiT@r4</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>lemonman</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>3ToAF#E^HAY!&amp;3!MtiT@r4</AndroidSigningKeyPass>
@@ -190,7 +194,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\xml\provider_paths.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import
+    Project="/Library/Frameworks/Xamarin.Android.framework/Versions/13.2.0.0/lib/xamarin.android/xbuild/Xamarin/Android/Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">

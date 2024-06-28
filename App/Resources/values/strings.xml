@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Lemon Installer</string>
+    <string name="app_name">Lemon Installer (with hand tracking)</string>
     <string name="action_settings">Settings</string>
 </resources>

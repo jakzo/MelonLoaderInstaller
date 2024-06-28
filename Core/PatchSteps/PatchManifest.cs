@@ -14,6 +14,7 @@ namespace MelonLoaderInstaller.Core.PatchSteps
         private static readonly Uri AndroidNamespaceUri = new Uri("http://schemas.android.com/apk/res/android");
 
         private const int NameAttributeResourceId = 16842755;
+        private const int RequiredAttributeResourceId = 16843406;
         private const int DebuggableAttributeResourceId = 16842767;
         private const int LegacyStorageAttributeResourceId = 16844291;
         private const int ExtractNativeLibsAttributeResourceId = 16844010;
@@ -24,7 +25,10 @@ namespace MelonLoaderInstaller.Core.PatchSteps
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.MANAGE_EXTERNAL_STORAGE",
             "android.permission.RECORD_AUDIO",
-            "android.permission.INTERNET"
+            "android.permission.INTERNET",
+            "com.oculus.permission.HAND_TRACKING",
+            // TODO: Is this one actually required? (QuestPatcher adds it)
+            "oculus.permission.handtracking",
         };
 
         private Patcher _patcher;
@@ -55,6 +59,7 @@ namespace MelonLoaderInstaller.Core.PatchSteps
 
             AxmlElement manifest = AxmlLoader.LoadDocument(memoryStream);
             AddStandardPermissions(manifest);
+            AddHandTrackingFeature(manifest);
             AddApplicationFlags(manifest);
 
             using MemoryStream saveStream = new MemoryStream();
@@ -78,6 +83,14 @@ namespace MelonLoaderInstaller.Core.PatchSteps
                 AddNameAttribute(permElement, permission);
                 manifest.Children.Add(permElement);
             }
+        }
+
+        private void AddHandTrackingFeature(AxmlElement manifest)
+        {
+            AxmlElement element = new AxmlElement("uses-feature");
+            AddNameAttribute(element, "oculus.software.handtracking");
+            element.Attributes.Add(new AxmlAttribute("required", AndroidNamespaceUri, RequiredAttributeResourceId, "false"));
+            manifest.Children.Add(element);
         }
 
         private void AddApplicationFlags(AxmlElement manifest)
